@@ -1,0 +1,41 @@
+{
+    "Identifier": "local.munki.Emacs",
+    "MinimumVersion": "0.4.0",
+    "Input": {
+        "NAME": "Emacs",
+        "MUNKI_REPO_SUBDIR": "apps/Emacs"
+    },
+    "Process": [
+        {
+            "Processor": "RecipeRepoTrustInfoProvider",
+            "Arguments": {
+                "input_plist_path": "com.github.rtrouton.download.Emacs"
+            }
+        },
+        {
+            "Processor": "RecipeRepoTrustInfoProvider",
+            "Arguments": {
+                "input_plist_path": "com.github.rtrouton.pkg.Emacs"
+            }
+        },
+        {
+            "Processor": "MunkiImporter",
+            "Arguments": {
+                "pkg_path": "%pkg_path%",
+                "munki_repo": "%MUNKI_REPO%",
+                "repo_subdirectory": "%MUNKI_REPO_SUBDIR%",
+                "pkginfo": {
+                    "catalogs": [
+                        "testing"
+                    ],
+                    "category": "Development",
+                    "developer": "GNU",
+                    "description": "GNU Emacs is an extensible, customizable text editor—and more.",
+                    "display_name": "Emacs",
+                    "name": "%NAME%",
+                    "version": "%version%"
+                }
+            }
+        }
+    ]
+}
